@@ -310,3 +310,7 @@ https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
 # End of 
 https://www.toptal.com/developers/gitignore/api/flask,pycharm,visualstudiocode
+
+.DS_Store
+static/.DS_Store
+template/.DS_Store

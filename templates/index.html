@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Data quality</title>
-</head>
-<body>
-Wesh alors
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet">
+        <title>Data quality</title>
+    </head>
+    <body>
+        <h1>Csv data quality</h1>
+        <h3>Give your csv, we say you if you have wrong data.</h3>
+        <div class="outer_quare">
+            <label id="inner_square" class="pointer inner_square" for="upload">
+                <div id="loader" class="hide lds-ring"><div></div><div></div><div></div><div></div></div>
+                <input id="upload" class="upload" type="file" accept=".csv" onchange=switchStep() />
+                <img id="csv_icon" class="csv_icon" src="csv.svg" alt="svg file logo" />
+                <span id="label" class="label">Click here or drop your csv file</span>
+            </label>
+        </div>
+    </body>
+    <script type="text/javascript" src="script.js"></script>
 </html>

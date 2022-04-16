@@ -3,6 +3,7 @@ let index = 0;
 
 document.querySelector('#upload')
     .addEventListener('change', event => {
+        console.log("cc")
         // parseCsv(event)
         document.querySelector('#formUpload').submit();
     })

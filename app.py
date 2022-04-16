@@ -12,16 +12,44 @@ def hello_world():  # put application's code here
 @app.route('/parse-csv', methods=['POST', 'GET'])
 def parse_csv():
 
-    # if request.method == 'POST':
-    #     print(request.files)
-    #     file = request.files['file']
-    #     file.save(os.path.join('upload', file.filename))
+    message = None
+
+    if request.method == 'POST':
+        print(request.files)
+        file = request.files['upload']
+        file.save(os.path.join('upload', file.filename))
+        message = file.filename
+    elif request.method == 'GET' :
+        message = "wesh"
 
     response = {
-        'message': 'wesh',
+        'message': message,
         'status': 200
     }
     return jsonify(response)
+
+
+@app.route('/uploader', methods=['GET', 'POST'])
+def upload_file():
+
+    message = None
+
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(os.path.join('upload', f.filename))
+        message = f.filename
+
+    elif request.method == 'GET':
+        message = "wesh"
+
+    response = {
+        'message': message,
+        'status': 200
+    }
+    return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 if __name__ == '__main__':

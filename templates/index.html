@@ -12,11 +12,13 @@
         <div class="outer_quare">
             <label id="inner_square" class="pointer inner_square" for="upload">
                 <div id="loader" class="hide lds-ring"><div></div><div></div><div></div><div></div></div>
-                <input id="upload" class="upload" type="file" accept=".csv" onchange=switchStep() />
-                <img id="csv_icon" class="csv_icon" src="csv.svg" alt="svg file logo" />
+                <form id="formUpload" method="POST" action="http://localhost:5000/parse-csv" enctype="multipart/form-data">
+                    <input id="upload" class="upload" type="file" accept=".csv" />
+                </form>
+                <img id="csv_icon" class="csv_icon" src="../static/csv.svg" alt="svg file logo" />
                 <span id="label" class="label">Click here or drop your csv file</span>
             </label>
         </div>
     </body>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../static/script.js"></script>
 </html>

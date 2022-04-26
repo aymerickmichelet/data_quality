@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ url_for('static',filename='style_result.css') }}" rel="stylesheet">
+        <link rel="icon" href="{{ url_for('static',filename='csv.svg') }}" />
+        <title>Data quality</title>
+        <script src="https://kit.fontawesome.com/e36d430f89.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Csv data quality</h1>
+        <h3>Give your csv, we say you if you have wrong data.</h3>
+        <div class="outer_square_result">
+            <div class="inner_square_result">
+                <div class="inner_inner_square_result green">
+                    <span class="percentage_number white">90%</span>
+                    <span class="percentage_label">valid data</span>
+                </div>
+                <div class="inner_inner_square_result yellow">
+                    <span class="percentage_number white">90%</span>
+                    <span class="percentage_label">usable data</span>
+                </div>
+                <div class="inner_inner_square_result red">
+                    <span class="percentage_number white">90%</span>
+                    <span class="percentage_label">unusable data</span>
+                </div>
+            </div>
+        </div>
+        <a class="download_correction white pointer" href="../static/csv.svg" download>
+            lenomducsv.csv
+            <i class="fas fa-download"></i>
+        </a>
+    </body>
+    <script type="text/javascript" src="../static/script.js"></script>
+</html>

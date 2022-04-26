@@ -50,11 +50,14 @@ def parse_csv():
         return redirect("/", code=HTTP_CODE['FOUND'])
 
     # Temporaire en attendant Nicolas
-    response = {
-        'message': message,
-        'status': HTTP_CODE['OK']
+
+    results = {
+        "correct": '{percent:.2%}'.format(percent=0.6686),
+        "warning": '{percent:.2%}'.format(percent=0.1391),
+        "error": '{percent:.2%}'.format(percent=0.1923)
     }
-    return jsonify(response)
+
+    return render_template("result.html", results=results)
 
 
 

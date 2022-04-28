@@ -12,11 +12,11 @@ document.querySelector('#upload')
 const showSpinner = () => {
     const inner_square = document.getElementById("inner_square")
     const loader = document.getElementById("loader")
-    const csv_icon = document.getElementById("csv_icon")
+    const xlsx_icon = document.getElementById("xlsx_icon")
     const label = document.getElementById("label")
 
     inner_square.classList.remove("pointer")
     loader.classList.remove("hide")
-    csv_icon.classList.add("hide")
+    xlsx_icon.classList.add("hide")
     label.classList.add("hide")
 }

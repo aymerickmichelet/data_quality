@@ -1,17 +1,20 @@
+import os.path
+
 import pandas as pd
 from pandera import Check, Column, DataFrameSchema, errors
 import pandera.extensions as ext
 
-if __name__ == '__main__':
-    file = pd.read_excel('consolidation.xlsx')
 
-    @ext.register_check_method(statistics=[])
-    def is_uppercase(pandas_obj):
-        return pandas_obj.str is not None and pandas_obj.str.isupper()
+@ext.register_check_method(statistics=[])
+def is_uppercase(pandas_obj):
+    return pandas_obj.str is not None and pandas_obj.str.isupper()
 
-    test_schema = DataFrameSchema({
-        "nom_amenageur": Column(str, Check.is_uppercase(), nullable=True),
-    })
+
+def main(file_path="consolidation.xlsx"):
+    if not os.path.exists(file_path):
+        return {"ErrorMessage" : "File path is invalid"}
+
+    file = pd.read_excel(file_path)
 
     error_schema = DataFrameSchema({
         "nom_amenageur": Column(str, Check.is_uppercase(), nullable=True),
@@ -73,14 +76,46 @@ if __name__ == '__main__':
     warning_schema = DataFrameSchema({
         "contact_amenageur": Column(str, Check.str_matches(r'\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b')),
         "contact_operateur": Column(str, Check.str_matches(r'\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b')),
-
+        "nom_amenageur": Column(str, Check.is_uppercase(), nullable=True),
     })
+
+    error_percent = 0
+    warning_percent = 0
+    warning_df = pd.DataFrame()
+    error_df = pd.DataFrame()
 
     try:
         error_schema.validate(file, lazy=True)
     except errors.SchemaErrors as err:
         pd.set_option("display.max_columns", None, "display.max_rows", None)
-        err.failure_cases.to_excel("output.xlsx")
-        for error in err.schema_errors:
-            print(error["error"])
-            pass
+        error_df = err.failure_cases
+        error_percent = len(err.failure_cases)/len(file)*100
+
+    try:
+        warning_schema.validate(file, lazy=True)
+    except errors.SchemaErrors as err:
+        pd.set_option("display.max_columns", None, "display.max_rows", None)
+        warning_df = err.failure_cases
+        warning_percent = len(err.failure_cases)/len(file)*100
+
+    if warning_df is not None and error_df is not None:
+        with pd.ExcelWriter(
+            path=file_path,
+            engine="openpyxl",
+            mode="a",
+            if_sheet_exists="replace"
+        )as writer:
+            warning_df.to_excel(excel_writer=writer, sheet_name="Warning")
+            error_df.to_excel(excel_writer=writer, sheet_name="Error")
+
+    correct_percent = 100 - warning_percent - error_percent
+    results = {
+        "correct" : correct_percent,
+        "warning" : warning_percent,
+        "error" : error_percent
+    }
+    return results
+
+
+if __name__ == '__main__':
+    main()

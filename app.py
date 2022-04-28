@@ -13,7 +13,6 @@ HTTP_CODE = {
 }
 
 app = Flask(__name__)
-# app.config['UPLOAD_FOLDER'] = '/path/o/the/uy'
 
 
 @app.route('/')
@@ -21,9 +20,8 @@ def hello_world():
     return render_template("index.html")
 
 
-@app.route('/parse-csv', methods=['POST', 'GET'])
-def parse_csv():
-
+@app.route('/parse-xlsx', methods=['POST', 'GET'])
+def parse_xlsx():
     global REQUEST_METHOD
     global HTTP_CODE
     message = None
@@ -45,16 +43,14 @@ def parse_csv():
         return redirect("/", code=HTTP_CODE['FOUND'])
 
     # Temporaire en attendant Nicolas
-    response = {
-        'message': message,
-        'status': HTTP_CODE['OK']
+
+    results = {
+        "correct": '{percent:.2%}'.format(percent=0.6686),
+        "warning": '{percent:.2%}'.format(percent=0.1391),
+        "error": '{percent:.2%}'.format(percent=0.1923)
     }
-    return jsonify(response)
 
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    return render_template("result.html", results=results)
 
 
 if __name__ == '__main__':

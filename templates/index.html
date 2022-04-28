@@ -4,21 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet">
-        <link rel="icon" href="{{ url_for('static',filename='favicon.ico') }}" />
+        <link rel="icon" href="{{ url_for('static',filename='csv.svg') }}" />
         <title>Data quality</title>
     </head>
     <body>
-        <h1>Csv data quality</h1>
-        <h3>Give your csv, we say you if you have wrong data.</h3>
-        <form id="formUpload" method="POST" action="parse-csv" enctype="multipart/form-data">
+        <h1>Xlsx data quality</h1>
+        <h3>Give your xlsx, we say you if you have wrong data.</h3>
+        <form id="formUpload" method="POST" action="parse-xlsx" enctype="multipart/form-data">
             <div class="outer_quare">
                 <label id="inner_square" class="pointer inner_square" for="upload">
                     <div id="loader" class="hide lds-ring"><div></div><div></div><div></div><div></div></div>
-
-                        <input id="upload" name="upload" class="upload" type="file" accept=".csv"/>
-
-                    <img id="csv_icon" class="csv_icon" src="../static/csv.svg" alt="svg file logo" />
-                    <span id="label" class="label">Click here to upload your csv file</span>
+                        <input id="upload" name="upload" class="upload" type="file" accept=".xlsx"/>
+                    <img id="xlsx_icon" class="xlsx_icon" src="../static/xlsx.svg" alt="xlsx file logo" />
+                    <span id="label" class="label">Click here to upload your xlsx file</span>
                 </label>
             </div>
         </form>

@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet">
-        <link rel="icon" href="{{ url_for('static',filename='csv.svg') }}" />
+        <link rel="icon" href="{{ url_for('static',filename='xlsx.svg') }}" />
         <title>Data quality</title>
     </head>
     <body>
         <h1>Xlsx data quality</h1>
-        <h3>Give your xlsx, we say you if you have wrong data.</h3>
+        <h3>Submit your .xlsx document, and we will return a new version with data quality related information.</h3>
         <form id="formUpload" method="POST" action="parse-xlsx" enctype="multipart/form-data">
             <div class="outer_quare">
                 <label id="inner_square" class="pointer inner_square" for="upload">

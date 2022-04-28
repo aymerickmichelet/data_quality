@@ -6,10 +6,13 @@ import os
 XLSX_EXTENSION = ".xlsx"
 
 
-def upload_csv(file: FileStorage):
+def upload_xlsx(file: FileStorage):
     global XLSX_EXTENSION
     original_filename = os.path.splitext(file.filename)[0]
     random_filename = secure_filename(original_filename) + "-" + uuid.uuid4().hex + XLSX_EXTENSION
-    file.save(os.path.join('upload', random_filename))
-    # return os.path.join('upload', random_filename)
-    return random_filename
+    filenames = {
+        "path": os.path.join('static/upload', random_filename),
+        "filename": random_filename
+    }
+    file.save(filenames["path"])
+    return filenames

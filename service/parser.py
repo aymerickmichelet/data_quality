@@ -1,5 +1,4 @@
 import os.path
-
 import pandas as pd
 from pandera import Check, Column, DataFrameSchema, errors
 import pandera.extensions as ext
@@ -10,9 +9,9 @@ def is_uppercase(pandas_obj):
     return pandas_obj.str is not None and pandas_obj.str.isupper()
 
 
-def main(file_path="consolidation.xlsx"):
+def parser(file_path):
     if not os.path.exists(file_path):
-        return {"ErrorMessage" : "File path is invalid"}
+        return {"ErrorMessage": "File path is invalid"}
 
     file = pd.read_excel(file_path)
 
@@ -110,12 +109,8 @@ def main(file_path="consolidation.xlsx"):
 
     correct_percent = 100 - warning_percent - error_percent
     results = {
-        "correct" : correct_percent,
-        "warning" : warning_percent,
-        "error" : error_percent
+        "correct": correct_percent,
+        "warning": warning_percent,
+        "error": error_percent
     }
     return results
-
-
-if __name__ == '__main__':
-    main()

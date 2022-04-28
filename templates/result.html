@@ -14,20 +14,20 @@
         <div class="outer_square_result">
             <div class="inner_square_result">
                 <div class="inner_inner_square_result green">
-                    <span class="percentage_number white">{{ results.correct }}</span>
+                    <span class="percentage_number white">{{ results.correct }}%</span>
                     <span class="percentage_label">valid data</span>
                 </div>
                 <div class="inner_inner_square_result yellow">
-                    <span class="percentage_number white">{{ results.warning }}</span>
+                    <span class="percentage_number white">{{ results.warning }}%</span>
                     <span class="percentage_label">usable data</span>
                 </div>
                 <div class="inner_inner_square_result red">
-                    <span class="percentage_number white">{{ results.error }}</span>
+                    <span class="percentage_number white">{{ results.error }}%</span>
                     <span class="percentage_label">unusable data</span>
                 </div>
             </div>
         </div>
-        <a class="download_correction white pointer" href="../static/xlsx.svg" download>
+        <a class="download_correction white pointer" href="../static/upload/{{ results.xlsx }}" download>
             Download XLSX File
             <i class="fas fa-download"></i>
         </a>

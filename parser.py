@@ -84,4 +84,3 @@ if __name__ == '__main__':
         for error in err.schema_errors:
             print(error["error"])
             pass
-

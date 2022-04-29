@@ -108,8 +108,11 @@ def parser(file_path):
             error_df.to_excel(excel_writer=writer, sheet_name="Error")
 
     correct_percent = 100 - warning_percent - error_percent
+    usable_percent = 100 - error_percent
+    
     results = {
         "correct": correct_percent,
+        "usable": usable_percent,
         "warning": warning_percent,
         "error": error_percent
     }

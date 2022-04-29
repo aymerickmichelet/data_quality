@@ -26,7 +26,7 @@ def parse_xlsx():
 
     global REQUEST_METHOD
     global HTTP_CODE
-    message = None
+
     results = {}
 
     if request.method == REQUEST_METHOD['POST']:
@@ -40,6 +40,7 @@ def parse_xlsx():
 
         results = {
             "correct": round(results["correct"], 2),
+            "usable": round(results["usable"], 2),
             "warning": round(results["warning"], 2),
             "error": round(results["error"], 2),
             "xlsx": uploaded_file_datas["filename"]

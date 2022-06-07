@@ -40,7 +40,6 @@ def parse_xlsx():
 
         results = {
             "correct": round(results["correct"], 2),
-            "warning": round(results["warning"], 2),
             "error": round(results["error"], 2),
             "xlsx": uploaded_file_datas["filename"]
         }
